@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: global-ott-region-availability
+    runtime: go
+    buildCommand: go build -tags netgo -ldflags '-s -w' -o app
+    startCommand: ./app
+    healthCheckPath: /healthz
+    envVars:
+      - key: STREAMING_AVAILABILITY_API_KEY
+        sync: false
+      - key: TMDB_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000
